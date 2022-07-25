@@ -12,8 +12,8 @@ const Tile = (x, y, size, row, column, rowCount, columnCount) => {
 
   tile.update = () => {
     const d = distance(tile.origin, { x: mouseX, y: mouseY })
-    tile.rotate.x += d / width / 50
-    tile.rotate.y += d / height / 50
+    tile.rotate.x += d / width / 100
+    tile.rotate.y += d / height / 100
     // tile.opacity = map(d, 0, width / 2, 255, 155)
   }
 
