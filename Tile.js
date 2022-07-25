@@ -12,8 +12,8 @@ const Tile = (x, y, size, row, column, rowCount, columnCount) => {
 
   tile.update = () => {
     const d = distance(tile.origin, { x: mouseX, y: mouseY })
-    tile.rotate.x += d / width / 100
-    tile.rotate.y += d / height / 100
+    tile.rotate.x += (deltaTime * Math.sqrt(d)) / width / 100
+    tile.rotate.y += (deltaTime * Math.sqrt(d)) / height / 100
     // tile.opacity = map(d, 0, width / 2, 255, 155)
   }
 
@@ -33,17 +33,17 @@ const Tile = (x, y, size, row, column, rowCount, columnCount) => {
 }
 
 const generateTiles = () => {
-  const w = 50
-  const h = 50
+  const w = (width - (width % 25)) / 25
+  const h = w
   const columnCount = (width - (width % w)) / w
   const rowCount = (height - (height % h)) / h
   console.log(columnCount, rowCount)
   for (let i = 0; i < columnCount; i++) {
     for (let j = 0; j < rowCount; j++) {
       Tile(
-        i * w + 2 - width / 2 + ((i + 1) * (width % w)) / columnCount,
-        j * w + 2 - height / 2 + ((j + 1) * (height % h)) / rowCount,
-        150,
+        w + i * w + 2 - width / 2 + ((i + 1) * (width % w)) / columnCount,
+        w + j * w + 2 - height / 2 + ((j + 1) * (height % h)) / rowCount,
+        w * 2,
         j,
         i,
         rowCount,
